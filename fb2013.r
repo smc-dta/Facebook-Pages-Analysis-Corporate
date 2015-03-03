@@ -1,13 +1,15 @@
 ######################################################################################
 #Exploring Facebook data Jan 2013 thru Jan 2014
 ######################################################################################
-#set wd
+
 library(data.table)
 library(ggplot2)
 library(plyr)
 library(scales)
 
-##WORKING WITH PAGE DATA
+
+# working with page data --------------------------------------------------
+
 #Read and set up page data
 pagedata <- read.csv("fbPages2.csv", sep="\t",header=TRUE,
                      row.names = NULL, dec = ",", fill = TRUE, comment.char = "")
@@ -66,7 +68,9 @@ pagedata$PTATratio <- pagedata[ ,talking/likes]*100
 
 #Data on likes and PTAT over time is found in "snapshots"
 
-##WORKING WITH POST DATA
+
+# working with post data --------------------------------------------------
+
 #Read and set up post data
 postdata <-  read.csv("fb2013v3.csv", sep="\t",header=TRUE,
         row.names = NULL, dec = ",", fill = TRUE, comment.char = "")
