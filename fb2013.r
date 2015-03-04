@@ -4,7 +4,6 @@
 <<<<<<< HEAD
 
 =======
-#set wd
 >>>>>>> 65026a0e6c078202c8a9070370f410617db60bf7
 library(data.table)
 library(ggplot2)
