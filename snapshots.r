@@ -1,29 +1,31 @@
+#works with snapshots data to get information on page ¨likes¨ and ¨PTAT¨ over time
+
 library(ggplot2)
 library(scales)
 library(dplyr)
 
 #Reading Data
-m <- read.csv("output-microsoft.csv", sep=",", header = TRUE)
+m <- read.csv("data/output-microsoft.csv", sep=",", header = TRUE)
 m$created <- substr(m$created_at, 0, 10)
 m$created <- as.Date(m$created)
 names(m) <- c("mlikes","mtalking", "mcreated_at", "created")
 
-w <- read.csv("snapshots-walmart.csv", sep=",", header = TRUE)
+w <- read.csv("data/snapshots-walmart.csv", sep=",", header = TRUE)
 w$created <- substr(w$created_at, 0, 10)
 w$created <- as.Date(w$created)
 names(w) <- c("wlikes","wtalking", "wcreated_at", "created")
 
-g <- read.csv("snapshots-ge-appliances.csv", sep=",", header = TRUE)
+g <- read.csv("data/snapshots-ge-appliances.csv", sep=",", header = TRUE)
 g$created <- substr(g$created_at, 0, 10)
 g$created <- as.Date(g$created)
 names(g) <- c("glikes","gtalking", "gcreated_at", "created")
 
-j <- read.csv("snapshots-johnson-s-baby.csv", sep=",", header = TRUE)
+j <- read.csv("data/snapshots-johnson-s-baby.csv", sep=",", header = TRUE)
 j$created <- substr(j$created_at, 0, 10)
 j$created <- as.Date(j$created)
 names(j) <- c("jlikes","jtalking", "jcreated_at", "created")
 
-x <- read.csv("snapshots-xbox.csv", sep=",", header = TRUE)
+x <- read.csv("data/snapshots-xbox.csv", sep=",", header = TRUE)
 x$created <- substr(x$created_at, 0, 10)
 x$created <- as.Date(x$created)
 names(x) <- c("xlikes","xtalking", "xcreated_at", "created")

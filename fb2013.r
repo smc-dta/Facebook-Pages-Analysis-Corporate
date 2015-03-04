@@ -1,5 +1,6 @@
 ######################################################################################
 #Exploring Facebook data Jan 2013 thru Jan 2014
+
 ######################################################################################
 <<<<<<< HEAD
 
@@ -18,7 +19,7 @@ library(scales)
 ##WORKING WITH PAGE DATA
 >>>>>>> 65026a0e6c078202c8a9070370f410617db60bf7
 #Read and set up page data
-pagedata <- read.csv("fbPages2.csv", sep="\t",header=TRUE,
+pagedata <- read.csv("data/fbPages2.csv", sep="\t",header=TRUE,
                      row.names = NULL, dec = ",", fill = TRUE, comment.char = "")
 names(pagedata) <- c("id", "pagename", "likes", "checkins","talking", "werehere",
                      "upated")
@@ -27,7 +28,7 @@ pagedata <- pagedata[ ,1:7]
 #File plist contains set of pages to include in analysis.  File plist also has company name
 #associated with each page and new var 'pagename2' reducing long names so they
 #fit on the graph better
-plist <-  read.csv("plist.csv", sep="\t",header = TRUE, row.names = NULL, 
+plist <-  read.csv("data/plist.csv", sep="\t",header = TRUE, row.names = NULL, 
                    comment.char = "", fill = TRUE)
 plist.t <- data.table(plist)
 setkey(plist.t,pagename)
@@ -83,7 +84,7 @@ pagedata$PTATratio <- pagedata[ ,talking/likes]*100
 ##WORKING WITH POST DATA
 >>>>>>> 65026a0e6c078202c8a9070370f410617db60bf7
 #Read and set up post data
-postdata <-  read.csv("fb2013v3.csv", sep="\t",header=TRUE,
+postdata <-  read.csv("data/fb2013v3.csv", sep="\t",header=TRUE,
         row.names = NULL, dec = ",", fill = TRUE, comment.char = "")
 summary(postdata)
 names(postdata) <- c("id","type","created","likes","comments","pagename","shares","updated")
@@ -92,7 +93,7 @@ postdata$updated <- as.Date(postdata$updated)
 
 #Getting data on posts of 2 more pages from Facebook
 #Code can be found on fb2013fillin.r, uses RFacebook
-ServerCloud <- read.csv("ServerCloud.csv", sep=",",header=TRUE,
+ServerCloud <- read.csv("data/ServerCloud.csv", sep=",",header=TRUE,
                          row.names = NULL, dec = ",", fill = TRUE, comment.char = "")
 #Arranging data from Rfacebook
 ServerCloud$updated <- as.Date("2014-02-28")
@@ -100,7 +101,7 @@ postdata2 <- data.frame(ServerCloud$from_id, ServerCloud$type, ServerCloud$creat
                ServerCloud$likes_count, ServerCloud$comments_count,
                ServerCloud$from_name, ServerCloud$shares_count, ServerCloud$updated)
 names(postdata2) <- c("id","type","created","likes","comments","pagename","shares","updated")
-WindowsServer <- read.csv("WindowsServer.csv", sep=",",header=TRUE,
+WindowsServer <- read.csv("data/WindowsServer.csv", sep=",",header=TRUE,
                         row.names = NULL, dec = ",", fill = TRUE, comment.char = "")
 WindowsServer$updated <- as.Date("2014-02-28")
 postdata3 <- data.frame(WindowsServer$from_id, WindowsServer$type, 
@@ -121,7 +122,7 @@ postdata.t <- data.table(postdata)
 pposts <- postdata.t[ ,sum(n), by = pagename]
 setnames(pposts,1:2,c("pagename", "posts"))
 pposts <- arrange(pposts, desc(posts))
-#pposts <- read.csv("pposts.csv", sep="\t",header=TRUE,
+#pposts <- read.csv("data/pposts.csv", sep="\t",header=TRUE,
  #                  row.names = NULL, dec = ",", fill = TRUE, comment.char = "")
 
 #merge pposts, plist including only pages in plist
